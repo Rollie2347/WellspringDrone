@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$json = [Console]::In.ReadToEnd() | ConvertFrom-Json; $path = $json.tool_input.file_path; $cmd = $json.tool_input.command; if ($path -match '\\.step$' -or $cmd -match '\\.step') { Write-Error 'Blocked: edit amphibious_hybrid_hexacopter_step.py instead and regenerate the STEP file'; exit 2 }"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Wellspring autonomous tree-watering drone concept</title>
+<desc>A hexacopter with a water tank and downward nozzles flies back-and-forth transect passes over rows of trees. A dock at a pond refills and recharges it automatically. The loop repeats across a roughly 100-acre farm, with the farthest rows over 800 meters from the pond.</desc>
+<rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+<!-- farm boundary -->
+<rect x="30" y="30" width="940" height="560" rx="12" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="10 6"/>
+<text x="45" y="55" font-family="sans-serif" font-size="16" fill="#475569">Tree farm — up to ~100 acres</text>
+<!-- pond -->
+<ellipse cx="180" cy="330" rx="110" ry="70" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+<text x="180" y="335" font-family="sans-serif" font-size="15" fill="#1e3a8a" text-anchor="middle">Pond</text>
+<!-- dock at pond edge -->
+<rect x="260" y="300" width="70" height="55" rx="4" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+<text x="295" y="292" font-family="sans-serif" font-size="13" fill="#334155" text-anchor="middle">Dock</text>
+<text x="295" y="322" font-family="sans-serif" font-size="10" fill="#334155" text-anchor="middle">intake</text>
+<text x="295" y="335" font-family="sans-serif" font-size="10" fill="#334155" text-anchor="middle">pump +</text>
+<text x="295" y="348" font-family="sans-serif" font-size="10" fill="#334155" text-anchor="middle">filter</text>
+<!-- rows of trees -->
+<g>
+<circle cx="480" cy="120" r="10" fill="#4ade80"/><circle cx="530" cy="120" r="10" fill="#4ade80"/><circle cx="580" cy="120" r="10" fill="#4ade80"/><circle cx="630" cy="120" r="10" fill="#4ade80"/><circle cx="680" cy="120" r="10" fill="#4ade80"/><circle cx="730" cy="120" r="10" fill="#4ade80"/><circle cx="780" cy="120" r="10" fill="#4ade80"/><circle cx="830" cy="120" r="10" fill="#4ade80"/><circle cx="880" cy="120" r="10" fill="#4ade80"/>
+<circle cx="480" cy="170" r="10" fill="#4ade80"/><circle cx="530" cy="170" r="10" fill="#4ade80"/><circle cx="580" cy="170" r="10" fill="#4ade80"/><circle cx="630" cy="170" r="10" fill="#4ade80"/><circle cx="680" cy="170" r="10" fill="#4ade80"/><circle cx="730" cy="170" r="10" fill="#4ade80"/><circle cx="780" cy="170" r="10" fill="#4ade80"/><circle cx="830" cy="170" r="10" fill="#4ade80"/><circle cx="880" cy="170" r="10" fill="#4ade80"/>
+<circle cx="480" cy="220" r="10" fill="#4ade80"/><circle cx="530" cy="220" r="10" fill="#4ade80"/><circle cx="580" cy="220" r="10" fill="#4ade80"/><circle cx="630" cy="220" r="10" fill="#4ade80"/><circle cx="680" cy="220" r="10" fill="#4ade80"/><circle cx="730" cy="220" r="10" fill="#4ade80"/><circle cx="780" cy="220" r="10" fill="#4ade80"/><circle cx="830" cy="220" r="10" fill="#4ade80"/><circle cx="880" cy="220" r="10" fill="#4ade80"/>
+</g>
+<text x="680" y="95" font-family="sans-serif" font-size="13" fill="#166534" text-anchor="middle">Test row / block (v1 demo scope)</text>
+<!-- transect flight path -->
+<path d="M 460 120 H 900 M 900 120 V 145 M 900 145 H 460 M 460 145 V 170 M 460 170 H 900 M 900 170 V 195 M 900 195 H 460 M 460 195 V 220 M 460 220 H 900" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="680" y="245" font-family="sans-serif" font-size="12" fill="#c2410c" text-anchor="middle">Row-transect spray pattern (metered to ground speed)</text>
+<!-- drone icon -->
+<g transform="translate(600,150)">
+  <line x1="-40" y1="-25" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <line x1="40" y1="-25" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <line x1="-40" y1="25" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <line x1="40" y1="25" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <line x1="0" y1="-35" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <line x1="0" y1="35" x2="0" y2="0" stroke="#334155" stroke-width="4"/>
+  <circle cx="-40" cy="-25" r="7" fill="#64748b"/><circle cx="40" cy="-25" r="7" fill="#64748b"/>
+  <circle cx="-40" cy="25" r="7" fill="#64748b"/><circle cx="40" cy="25" r="7" fill="#64748b"/>
+  <circle cx="0" cy="-35" r="7" fill="#64748b"/><circle cx="0" cy="35" r="7" fill="#64748b"/>
+  <rect x="-14" y="-10" width="28" height="20" rx="4" fill="#0ea5e9"/>
+  <line x1="0" y1="-10" x2="0" y2="-28" stroke="#334155" stroke-width="2"/>
+  <circle cx="0" cy="-30" r="3" fill="#334155"/>
+  <line x1="-6" y1="10" x2="-6" y2="20" stroke="#0369a1" stroke-width="2"/>
+  <line x1="6" y1="10" x2="6" y2="20" stroke="#0369a1" stroke-width="2"/>
+</g>
+<text x="600" y="70" font-family="sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">Hex frame, tank + nozzles, GPS/telemetry mast</text>
+<!-- distance marker -->
+<path d="M 330 400 H 900" stroke="#94a3b8" stroke-width="1.5"/>
+<path d="M 330 395 V 405 M 900 395 V 405" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="615" y="420" font-family="sans-serif" font-size="13" fill="#475569" text-anchor="middle">Farthest rows: 800m+ (0.5mi+) from pond dock</text>
+<!-- loop steps -->
+<g font-family="sans-serif" font-size="13" fill="#1e293b">
+  <text x="45" y="460">Autonomy loop:</text>
+  <text x="45" y="485">1. Fly row-transect passes, metered spray</text>
+  <text x="45" y="505">2. Detect low tank / low battery</text>
+  <text x="45" y="525">3. Auto return-to-dock at pond</text>
+  <text x="45" y="545">4. Auto refill (+ recharge, stretch goal) and relaunch</text>
+  <text x="45" y="570">Repeats across hours/days to rotate through the full farm</text>
+</g>
+<path d="M 330 470 L 260 335" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)" fill="none"/>
+<defs>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#f97316"/>
+  </marker>
+</defs>
+</svg>

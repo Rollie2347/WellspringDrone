@@ -1,0 +1,54 @@
+newmtl carbon_fiber
+Kd 0.02 0.025 0.03
+Ka 0.006 0.007 0.009
+Ks 0.65 0.65 0.65
+Ns 60
+
+newmtl aluminum
+Kd 0.72 0.76 0.78
+Ka 0.216 0.228 0.234
+Ks 0.35 0.35 0.35
+Ns 60
+
+newmtl polycarbonate
+Kd 0.08 0.42 0.62
+Ka 0.024 0.126 0.186
+Ks 0.25 0.25 0.25
+Ns 60
+
+newmtl water_blue
+Kd 0.05 0.58 0.82
+Ka 0.015 0.174 0.246
+Ks 0.2 0.2 0.2
+Ns 60
+
+newmtl rubber_black
+Kd 0.01 0.012 0.014
+Ka 0.003 0.004 0.004
+Ks 0.6 0.6 0.6
+Ns 60
+
+newmtl engine_dark
+Kd 0.1 0.1 0.09
+Ka 0.030 0.030 0.027
+Ks 0.45 0.45 0.45
+Ns 60
+
+newmtl warning_red
+Kd 0.85 0.12 0.08
+Ka 0.255 0.036 0.024
+Ks 0.2 0.2 0.2
+Ns 60
+
+newmtl spray_brass
+Kd 0.95 0.63 0.18
+Ka 0.285 0.189 0.054
+Ks 0.3 0.3 0.3
+Ns 60
+
+newmtl antenna_green
+Kd 0.12 0.88 0.52
+Ka 0.036 0.264 0.156
+Ks 0.1 0.1 0.1
+Ns 60
+

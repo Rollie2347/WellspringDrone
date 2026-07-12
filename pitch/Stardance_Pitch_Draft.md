@@ -49,10 +49,8 @@ refill + relaunch) with the ~100-acre property boundary and the 800m+ farthest-r
 ## Rough budget ask
 
 Parts for a working v1 (frame, motors/ESCs/props, flight controller, GPS, long-range telemetry radio, water
-pump/tank/valves, dock pump + filter + reservoir): roughly $650-$1,050. Have $600+ already committed; Stardance
-funding would close the gap and let the dock (the genuinely novel part) be built properly instead of cut for
-cost.
-
-> Note: the locked BOM in the project `CLAUDE.md` (recommended + budget-trim tiers) supersedes the rough
-> $650-1,050 estimate above with more realistic, name-brand pricing — update this pitch's budget ask before
-> posting if you want the numbers to match.
+pump/tank/valves, dock pump + filter + reservoir): roughly $1,400-$1,900 on the budget-trim tier (up to
+$2,200-$3,100 for the fully name-brand recommended tier — Cube Orange+, RFD900x, CUAV GPS — if reliability on
+a first autonomous build is worth the premium). Have $600+ already committed, plus realistic Stardance A/S-tier
+funding of $120-350; Stardance funding would close the gap and let the dock (the genuinely novel part) be built
+properly instead of cut for cost.

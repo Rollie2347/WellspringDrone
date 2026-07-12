@@ -179,6 +179,10 @@ estimate, but closer to what $600 + Stardance funding can realistically cover.
      weight yet (tank shell, pump, solenoid valves, tubing, and the wiring/connectors/fasteners/landing-gear/
      antenna-mount misc line). Real AUW will push margin down and throttle up further. Source those weights and
      re-run the calculator before locking in the motor/prop choice.
+   - Checked 2026-07-12: the named "XTL-3210 class" pump alone has listed weights ranging from ~72g to
+     1.06kg depending on seller/listing — too wide a spread to plug a number into `v1/power_budget.py` without
+     guessing. This isn't resolvable by more searching; it needs an actual product picked and ordered, then its
+     datasheet/listing weight entered as the source citation, same as the already-sourced constants.
    - RFD900x-US telemetry range is confirmed fine: 40km+ line-of-sight rated per the official RFDesign
      datasheet, far beyond the 800m+ need — not a concern.
 3. v1: dock design (alignment guide, intake pump, reservoir, float sensor) not yet started — this is the
@@ -196,14 +200,41 @@ estimate, but closer to what $600 + Stardance funding can realistically cover.
 7. v1: regulatory — the 800m+/0.5mi+ full-farm scenario likely exceeds standard Part 107 VLOS; the smaller v1
    demo scope near the dock plausibly stays within VLOS. Verify both against a real Part 107 reference or a
    pilot/instructor before any outdoor flight — not yet done.
+   - Checked 2026-07-12 (14 CFR 107.31 / FAA guidance): Part 107 sets no fixed VLOS distance — the legal test is
+     unaided-eye ability to see the aircraft's location/attitude and avoid hazards, not a number. In practice
+     this tops out around ~1,500ft (~460m) for most small UAS in good conditions. That confirms the concern:
+     800m+ transects are past the practical VLOS envelope (would need a visual observer chain or a BVLOS
+     waiver), while a dock-adjacent test row is plausible. This is public regulatory research, not a
+     site-specific legal sign-off — still get a real Part 107 pilot/instructor to confirm before any outdoor
+     flight.
 8. v2: no vendor parts or structural analysis yet (unchanged from original design doc) — dimensional envelopes
    only. The prop/arm-length overlap bug is fixed (see code architecture note above), but nothing else in the
    v2 design has been validated against real thrust/structural numbers.
-9. `pitch/Stardance_Pitch_Draft.md`'s budget ask ($650-1,050) is stale against the locked BOM above (roughly
-   $1,400-3,100 depending on tier) — the draft already flags this itself; still needs an actual edit before
-   posting.
+9. `pitch/Stardance_Pitch_Draft.md`'s budget ask was updated 2026-07-12 to match the locked BOM's category price
+   ranges ($1,400-1,900 budget-trim / $2,200-3,100 recommended) — but see gap #11 below, live vendor pricing
+   found the same day pushes real cost above even those numbers. The pitch draft needs another pass once a
+   final tier/cost-cutting decision is made.
 10. Consolidate any secondary export packs sitting outside `designs/` into the one canonical folder. (Done as
     of this project setup — everything now lives under `designs/`.)
+11. v1: real vendor buy list compiled in `v1/BUY_LIST.md` (2026-07-12) — live links/prices for every BOM line,
+    both tiers. Key finding: current real prices for the named Recommended-tier parts total ~$3,859 for core
+    flight hardware alone (frame/motors/ESCs/props/FC/GPS/telemetry/battery/charger, before water system/dock/
+    misc), well above the ~$1,858-2,529 the BOM table's category ranges implied for the same set — driven mainly
+    by the named ESC and battery being pricier than the old estimate assumed. Budget-trim core hardware is
+    ~$2,715-3,195, close to what the old estimate called the *whole-project* budget-trim total. This makes gap
+    #9's pitch numbers stale again — needs a decision on cost-cutting (cheaper battery/charger/fewer spare
+    props) before the pitch is re-edited. Water system and ground dock pricing/dimensions are only partially
+    resolved (see `v1/BUY_LIST.md` for specifics, especially the unresolved ~14x pump weight discrepancy across
+    vendor listings — do not lock CAD mounting geometry to either number without a physical measurement).
+12. v1: custom printable CAD started 2026-07-12 in `v1/cad/` (tank mount, pump/valve mount, ground dock small
+    parts) — see the "v1 CAD package" section above. All three generate, pass baseline inspection, and were
+    visually verified via rendered snapshots (CAD Viewer's live server couldn't start on this machine — the
+    installed skill build is missing its `agent:start` script/`node_modules` — so review used the CLI
+    snapshot tool instead of a live session). Still needed before these are final: (a) real Tarot X6 arm tube
+    OD measured with calipers (currently a search-derived 25mm, not from Tarot's own spec), (b) real tank/
+    pump/valve dimensions once ordered, to replace the envelope placeholders, (c) real landing-gear corner
+    spacing for the alignment guide posts (currently a 700mm placement guess — Foxtech's spec confirms leg
+    height 395mm but not leg spread).
 
 ## Readiness status (three tiers, not one bar)
 
@@ -218,18 +249,49 @@ estimate, but closer to what $600 + Stardance funding can realistically cover.
 ## Onboarding order for a fresh session
 
 1. Read this file first for the v1/v2 split and current build target.
-2. If working on v1: no CAD onboarding needed yet beyond the dock structure — this is mostly an electronics/
-   firmware/mission-planning build using off-the-shelf frame parts. Check `v1/power_budget.py` first if the
-   task touches motor/prop/battery/payload choices — it has the current sourced thrust/power math and its
-   open gaps (see Known gaps #2).
-3. If working on v2 (CAD): read `designs/amphibious_hybrid_hexacopter_README.md`, then
+2. If working on v1 electronics/firmware/mission-planning: check `v1/power_budget.py` first if the task
+   touches motor/prop/battery/payload choices — it has the current sourced thrust/power math and its open
+   gaps (see Known gaps #2).
+3. If working on v1 CAD (custom printable parts, `v1/cad/`): read the module docstring at the top of each
+   `*_step.py` file first — each documents its own envelope-vs-exact-fit tradeoffs and sourcing. See Known
+   gaps #12.
+4. If working on v2 (CAD): read `designs/amphibious_hybrid_hexacopter_README.md`, then
    `amphibious_hybrid_hexacopter_step.py`, then open the STEP in Fusion 360 alongside a `designs/snapshots/`
    image before making changes.
+
+## v1 CAD package (custom printable parts)
+
+Separate from the v2 CAD package in `designs/` — v1 uses an off-the-shelf Tarot X6 frame (no custom
+airframe fabrication), but still needs a handful of custom FDM-printable parts to mount the payload and
+build the ground dock. Lives in `v1/cad/`, one build123d source + generated STEP per part (not combined
+into a single assembly file, since these are separately printed, physically unconnected parts):
+
+- `tank_mount_bracket_step.py` — two arm-clamp saddles (clip onto two Tarot X6 arm tubes) supporting a
+  strap-adjustable tank cradle on top.
+- `pump_valve_mount_step.py` — single arm-clamp saddle supporting a slotted pump mounting pad and two
+  open-ring valve clips.
+- `ground_dock_step.py` — float-switch mounting bracket, and a landing alignment guide post (funnel cone
+  on a bolt-down flange, one per landing-pad corner). Deliberately does NOT include the intake pump or
+  reservoir — both are too large/heavy (180x180x291mm/3.35kg; 34x13x16.5in) to sensibly custom-print;
+  generic hardware-store pipe clamps/straps are the right fastener there instead.
+
+All three follow envelope-not-exact-fit: real tank/pump/valve vendor dimensions are unresolved (see
+Known gaps #11), so every payload mount is a generous strap- or slot-adjustable cradle, not a snug pocket.
+The Tarot X6 arm tube OD (25mm) is a search-derived figure, not from the frame's own datasheet — verify
+with calipers once the frame is in hand, same caveat as the BOM. Regenerate with the CAD skill's
+`scripts/step` launcher (needs `cadpy` on `PYTHONPATH`, pointed at the CAD skill's
+`scripts/packages/cadpy/src`) using `designs/.venv-cad`'s Python — that venv now also has `playwright`
++ chromium installed (added 2026-07-12) for the CAD skill's mandatory snapshot validation step, beyond the
+build123d/cadquery-ocp-novtk/numpy stack the v2 package originally needed.
 
 ## Related files in this project
 
 - `v1/power_budget.py` — sourced thrust/power/flight-time budget calculator for the Recommended-tier BOM (real
   motor+prop datasheet data, cited component weights); re-run after any motor/prop/battery/payload change. See
   Known gaps #2 for what it's already flagged.
+- `v1/BUY_LIST.md` — live vendor links/prices for every BOM line, both tiers (dated, re-verify if stale). See
+  Known gaps #11 for the headline finding (real prices run above the BOM table's category ranges).
+- `v1/cad/` — custom FDM-printable parts (tank/pump/valve mounts, dock small parts); see the "v1 CAD package"
+  section above and Known gaps #12.
 - `pitch/Stardance_Pitch_Draft.md` — the funding pitch draft for #outpost-idea-pool (project name: Wellspring).
 - `pitch/wellspring_concept_sketch.svg` — concept sketch referenced by the pitch draft.

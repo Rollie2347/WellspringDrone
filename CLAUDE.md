@@ -235,6 +235,25 @@ estimate, but closer to what $600 + Stardance funding can realistically cover.
     pump/valve dimensions once ordered, to replace the envelope placeholders, (c) real landing-gear corner
     spacing for the alignment guide posts (currently a 700mm placement guess — Foxtech's spec confirms leg
     height 395mm but not leg spread).
+13. v1: a third **Bare-bones tier** was added to `v1/BUY_LIST.md` (2026-07-15) — real, in-stock, ≤2-week-ship
+    vendor pricing for a drone-only build (no dock) targeting a hard $1,800 ceiling. It's a cheaper version of
+    every essential system (fly autonomously, spray water, telemetry home), not a cut-down subset — same
+    category coverage as the Recommended/Budget-trim tiers, cheaper part in every slot. Totals ~$1,095-1,185,
+    leaving ~$615-705 of headroom under $1,800. **Key open gap:** unlike the other two tiers, this tier's
+    motor/prop combo (SunnySky V3508 700KV + 12x4.5in props on a 650mm hex frame) has no sourced 6S thrust
+    datasheet — `v1/power_budget.py` only has real thrust-table data for the Recommended tier's T-Motor MN4014
+    + 16x5.4in combo. A hand estimate puts this tier's margin at roughly 20-25% with a full 2-gal tank, well
+    under the ~60%+ margin this project's methodology targets elsewhere (see gap #2). Do not order this tier's
+    motors/ESCs/props/frame until either (a) `v1/power_budget.py` is extended with a real sourced thrust curve
+    for the V3508+12x4.5 combo, or (b) it's swapped for the already-verified MN4014+16x5.4in combo on a bigger
+    frame — the tier's budget headroom covers that swap (~$700 more). Build instructions (assembly order,
+    wiring, ArduCopter setup, ground/bench testing before first flight) were added to `v1/BUY_LIST.md` in the
+    same pass. Those instructions surfaced two items **not in any tier of the locked BOM above** and not yet
+    priced anywhere: an RC transmitter/receiver pair (needed for manual override during ground testing and
+    first flights, even though autonomous missions run off pre-loaded waypoints) and a relay/MOSFET switch
+    module to let the flight controller trigger the pump/solenoid valve from an AUX output (no BOM line
+    currently connects the water system's electrical control to the FC). Both are cheap (~$20-40 each) but
+    need to be added to whichever tier is actually ordered.
 
 ## Readiness status (three tiers, not one bar)
 
@@ -289,8 +308,10 @@ build123d/cadquery-ocp-novtk/numpy stack the v2 package originally needed.
 - `v1/power_budget.py` — sourced thrust/power/flight-time budget calculator for the Recommended-tier BOM (real
   motor+prop datasheet data, cited component weights); re-run after any motor/prop/battery/payload change. See
   Known gaps #2 for what it's already flagged.
-- `v1/BUY_LIST.md` — live vendor links/prices for every BOM line, both tiers (dated, re-verify if stale). See
-  Known gaps #11 for the headline finding (real prices run above the BOM table's category ranges).
+- `v1/BUY_LIST.md` — live vendor links/prices for every BOM line, all three tiers (Recommended, Budget-trim,
+  Bare-bones — dated, re-verify if stale), plus build/assembly instructions for the Bare-bones tier. See Known
+  gaps #11 for the headline finding on the first two tiers (real prices run above the BOM table's category
+  ranges) and #13 for the Bare-bones tier's open thrust-margin gap and missing RC/relay hardware.
 - `v1/cad/` — custom FDM-printable parts (tank/pump/valve mounts, dock small parts); see the "v1 CAD package"
   section above and Known gaps #12.
 - `pitch/Stardance_Pitch_Draft.md` — the funding pitch draft for #outpost-idea-pool (project name: Wellspring).

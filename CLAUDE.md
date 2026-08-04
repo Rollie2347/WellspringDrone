@@ -254,13 +254,16 @@ estimate, but closer to what $600 + Stardance funding can realistically cover.
     module to let the flight controller trigger the pump/solenoid valve from an AUX output (no BOM line
     currently connects the water system's electrical control to the FC). Both are cheap (~$20-40 each) but
     need to be added to whichever tier is actually ordered.
-14. v1: two Bare-bones tier links in `v1/BUY_LIST.md` had gone dead by 2026-08-03 and were relinked: the GPS
+14. v1: three Bare-bones tier links in `v1/BUY_LIST.md` had gone stale by 2026-08-03 and were relinked: the GPS
     row's Holybro M9N Micro went out of stock at RaceDayQuads — swapped for the **Holybro Micro M10 GPS w/
     IST8310 compass** direct from Holybro's official store ($27.99, in stock, same JST-GH-6P connector/
     footprint, no wiring/mount change needed). The balance charger row's Amazon ASIN (B01NB9A36R) started
     returning a dead page — swapped for a same-class **IMAX B6AC 80W 6A charger** listing (Amazon ASIN
     B0GWMZ5FCD), found via search but not fetch-verified since Amazon blocks automated fetches (same caveat as
-    other Amazon rows in that file — verify live price/stock before ordering). Neither swap changes tier
+    other Amazon rows in that file — verify live price/stock before ordering). The ESC row's HobbywingDirect
+    listing (Hobbywing XRotor 40A ESC ×6) had a preorder/availability issue — swapped for the identical
+    Hobbywing XRotor 40A individual Opto ESC already used in this same file's Budget-trim tier, sourced from
+    ReadyMadeRC instead ($19.99 ea vs $17.99 ea, confirmed in stock). None of these three swaps changes tier
     totals meaningfully. Since vendor stock/links are the most perishable data in this repo, treat every link
     in `v1/BUY_LIST.md` as needing a live re-check before ordering, not just these two.
 
